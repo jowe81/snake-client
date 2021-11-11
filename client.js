@@ -40,20 +40,28 @@ const connect = function(name) {
 
   // Connection attempt succeeded
   conn.on('connect', () => {
+
     cl("Connection established");
+
     // Set our name from command line argument (if present) or PLAYER_INITALS constant
     sendName(conn, name ? name : PLAYER_INITIALS);
+
   });
 
-  // Log incoming data to the console
+  // Handle incoming data
   conn.on('data', (data) => {
+
     // Remove delimiter if present
     if (data[0] === '\n') {
       data = data.substr(1);
     }
+
+    // Log data to the console
     cl(data, "Server");
+
     // Terminate app if we got kicked out
     checkForDeath(data);
+
   });
 
   return conn;
