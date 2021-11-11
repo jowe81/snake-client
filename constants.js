@@ -17,10 +17,11 @@ const KEY_BINDINGS = {
   },
 
   //Free-text messaging mode
-  TYPE_MESSAGE : '0',
+  TYPE_MESSAGE : 'm',
 
   //Canned messages map (keys must be digits)
   CANNED_MESSAGES : {
+    0:"Good morning!",
     1:"How's the weather?",
     2:"Let's go for drinks!",
     3:"I'll win this game!",
