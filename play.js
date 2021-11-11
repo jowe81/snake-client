@@ -4,6 +4,8 @@ const { connect } = require('./client');
 const { cl } = require('./log');
 //Get the setupInput function to init UI
 const { setupInput } = require('./input');
+//Get cmdline arguments
+const args = require('./args');
 
 //Start the game: connect to the server and start the UI
-setupInput(connect());
+setupInput(connect(args.name));
