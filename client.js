@@ -11,15 +11,6 @@ const sendName = (conn, name) => {
   conn.write(`Name: ${name}`);
 };
 
-//Send a move command
-const move = (conn, direction) => {
-  if (['up', 'down', 'left', 'right'].includes(direction)) {
-    //This is a valid direction - send the command
-    cl(`Sending the Move: ${direction} command`);
-    conn.write(`Move: ${direction}`);
-  }
-};
-
 const connect = function () {
   cl("Connecting ...");
 
@@ -34,7 +25,6 @@ const connect = function () {
   conn.on('connect', (data) => {
     cl("Connection established");
     sendName(conn,'JW');
-    setInterval(() => move(conn, 'up'), 100);
   });
 
   conn.on('data', (data) => {
