@@ -27,17 +27,22 @@ const pad = (string, minLength) => {
 // The prefix argument is optional: when present, use it instead of the stored prefix
 // If text2 and colors are present, these will be logged after text
 const cl = (text, prefix, text2, bgColor, textColor) => {
+
   //Prepare text2 with indicated colors, if present, and concatenate with text
   if (textColor) {
     text += " " + chalk[bgColor][textColor](text2);
   }
+
   // If no prefix is passed in, use default
   let prefixToLog = prefix || getPrefix();
+
   if (prefixToLog) {
     // Ensure minimum length of prefix
     const spaces = pad("", _prefixMinLength - prefixToLog.length);
+
     // Invert prefix color and add padding
     prefixToLog = chalk.bgGreen.black(` ${prefixToLog}:${spaces}`);
+
     // Log out prepared line
     console.log(`${prefixToLog} ${text}`);
   } else {
