@@ -83,13 +83,17 @@ const handleUserInput = (data) => {
     }
 
   } else {
-    //Currently typing a message - add to message until exiting with "0" key
-
-    if (data !== KEY_BINDINGS.TYPE_MESSAGE) {
+    //Currently typing a message (exit with TYPE_MESSAGE key or digit)
+    if (data !== KEY_BINDINGS.TYPE_MESSAGE && !/\d/.test(data)) {
       //Add this character to message
       _message += data;
     } else {
-      //Exit key pressed - send message and leave message-typing mode
+      //Valid exit key pressed
+      if (/\d/.test(data)) {
+        //Digit was given - overwrite indicated message-slot with current message
+        KEY_BINDINGS.CANNED_MESSAGES[data] = _message;
+      }
+      //Send message and leave message-typing mode
       sendMessage(_message);
       _message = "";
       _typingMessage = false;
