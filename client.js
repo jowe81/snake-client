@@ -18,6 +18,14 @@ const sendName = (conn, name) => {
   conn.write(`Name: ${name}`);
 };
 
+// Check if we got kicked out. If so, terminate the app.
+const checkForDeath = (data) => {
+  if (data.match(/ded/)) {
+    cl("The server has kicked you out. Goodbye!");
+    process.exit();
+  }
+};
+
 // Initialize connection to game server
 const connect = function (name) {
   cl(`Attempting to connect to ${CONNECT_TO.IP}:${CONNECT_TO.PORT}`);
@@ -39,10 +47,13 @@ const connect = function (name) {
 
   // Log incoming data to the console
   conn.on('data', (data) => {
+    // Remove delimiter if present
     if (data[0] === '\n') {
       data = data.substr(1);
     }
     cl(data, "Server");
+    // Terminate app if we got kicked out
+    checkForDeath(data);
   });
 
   return conn;
