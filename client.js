@@ -32,6 +32,9 @@ const connect = function () {
   });
 
   conn.on('data', (data) => {
+    if (data[0] === '\n') {
+      data = data.substr(1);
+    }
     cl(data, "Server");
   });
   return conn;
