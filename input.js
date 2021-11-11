@@ -1,7 +1,7 @@
 //Get logging function from "log" module
 const { cl } = require('./log');
 //Get array with canned messages from "constants" module
-const { CANNED_MESSAGES } = require('./constants');
+const { CANNED_MESSAGES, NAV_KEYS, MESSAGE_KEY } = require('./constants');
 
 let _connection;
 let _typingMessage = false;
@@ -41,19 +41,19 @@ const handleUserInput = (data) => {
   if (!_typingMessage) {
     //Not in message mode, check for move command keys
     switch (data) {
-    case 'w':
+    case NAV_KEYS.UP:
       move('up');
       break;
-    case 'a':
+    case NAV_KEYS.LEFT:
       move('left');
       break;
-    case 's':
+    case NAV_KEYS.DOWN:
       move('down');
       break;
-    case 'd':
+    case NAV_KEYS.RIGHT:
       move('right');
       break;
-    case '0':
+    case MESSAGE_KEY:
       //Enter message mode
       _typingMessage = true;
       cl("Start typing message","Stdin");
