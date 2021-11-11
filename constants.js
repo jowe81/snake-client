@@ -1,3 +1,5 @@
+// constants.js: The client can be configured here
+
 const CONNECT_TO = {
 
   //Game Server Address
