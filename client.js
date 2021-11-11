@@ -15,7 +15,7 @@ const sendName = (conn, name) => {
   conn.write(`Name: ${name}`);
 };
 
-const connect = function () {
+const connect = function (name) {
   cl("Connecting ...");
 
   const conn = net.createConnection({
@@ -28,7 +28,7 @@ const connect = function () {
 
   conn.on('connect', (data) => {
     cl("Connection established");
-    sendName(conn, PLAYER_INITIALS);
+    sendName(conn, name ? name : PLAYER_INITIALS);
   });
 
   conn.on('data', (data) => {

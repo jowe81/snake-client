@@ -15,4 +15,4 @@ for (let i = 0; i < rawArgs.length; i += 2) {
   }
 }
 
-module.export = args;
+module.exports = args;
