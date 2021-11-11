@@ -1,17 +1,16 @@
 const IP = 'localhost';
 const PORT = 50541;
 
-const CANNED_MESSAGES = [
-  "First canned message will never be sent",
-  "How's the weather?",
-  "Let's go for drinks!",
-  "I'll win this game!",
-  "This project's fun!",
-  "How's your day?",
-  "Had enough yet?",
-  "Need a break, c'ya!",
-  "My internet sucks!",
-  "I'm so hungry!",
-];
+const CANNED_MESSAGES = {
+  1:"How's the weather?",
+  2:"Let's go for drinks!",
+  3:"I'll win this game!",
+  4:"This project's fun!",
+  5:"How's your day?",
+  6:"Had enough yet?",
+  7:"Need a break, c'ya!",
+  8:"My internet sucks!",
+  9:"I'm so hungry!",
+};
 
 module.exports = { IP, PORT, CANNED_MESSAGES };
