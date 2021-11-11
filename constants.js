@@ -21,7 +21,7 @@ const KEY_BINDINGS = {
   //Free-text messaging mode
   TYPE_MESSAGE: '~',
 
-  //EXIT
+  //Exit the client (CTRL + C will work, too)
   EXIT: 'q',
 
   //Canned messages map (keys must be digits)
