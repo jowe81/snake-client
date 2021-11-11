@@ -4,6 +4,8 @@ const net = require("net");
 const { cl, setPrefix } = require("./log");
 //Set default prefix for logging to "Server"
 setPrefix("Client");
+//Get configuration
+const { IP, PORT } = require("./constants");
 
 //Set our name on the server
 const sendName = (conn, name) => {
@@ -15,8 +17,8 @@ const connect = function () {
   cl("Connecting ...");
 
   const conn = net.createConnection({
-    host: 'localhost', // IP address here,
-    port: 50541,// PORT number here,
+    host: IP, // IP address here,
+    port: PORT,// PORT number here,
   });
 
   // interpret incoming data as text

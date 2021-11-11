@@ -1,7 +1,7 @@
 //Get logging function from "log" module
 const { cl } = require('./log');
 //Get array with canned messages from "constants" module
-const { cannedMessages } = require('./constants');
+const { CANNED_MESSAGES } = require('./constants');
 
 let _connection;
 let _typingMessage = false;
@@ -34,7 +34,7 @@ const setupInput = (conn) => {
 const handleUserInput = (data) => {
   //Check for CTRL+C
   if (data === '\u0003') {
-    cl("CTRL+C received - goodbye!", "Keyboard");
+    cl("CTRL+C received - goodbye!", "Stdin");
     process.exit();
   }
   //Check if we're currently typing a message
@@ -56,12 +56,12 @@ const handleUserInput = (data) => {
     case '0':
       //Enter message mode
       _typingMessage = true;
-      cl("Start typing message","Keyboard");
+      cl("Start typing message","Stdin");
     }
     //Check for digit other than 0, and send canned message
     if (/[1-9]/.test(data)) {
-      cl(`Sending canned message: ${cannedMessages[data]}`,"Keyboard");
-      sendMessage(cannedMessages[data]);
+      cl(`Selected canned message: ${CANNED_MESSAGES[data]}`,"Stdin");
+      sendMessage(CANNED_MESSAGES[data]);
     }
   } else {
     //Currently typing a message - add to message until exiting with "0" key
