@@ -42,3 +42,6 @@ With optional command line arguments:
 npm run play -- [-name yourName] [-ip serverAddress] [-port portNumber]
 ```
 Terminate the client with `q` (default binding) or good old `CTRL + C`.
+
+## Screenshot
+![snake-client-screenshot.png](./snake-client-screenshot.png)
