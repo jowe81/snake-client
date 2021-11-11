@@ -1,6 +1,10 @@
 // log.js: Log a line to the console with an optional prefix
 
+//Store defalt prefix here
 let _prefix;
+
+//Set a minimum prefix length to indent log entries consistently
+const _prefixMinLength = 7;
 
 //Change prefix
 const setPrefix = (prefix) => _prefix = prefix;
@@ -18,8 +22,9 @@ const getPrefix = () => _prefix;
 const cl = (text, prefix) => {
   let prefixToLog;
   prefix ? prefixToLog = prefix : prefixToLog = getPrefix();
+  const spaces = " ".repeat(_prefixMinLength - prefixToLog.length);
   if (prefixToLog) {
-    console.log(`${prefixToLog}: ${text}`);
+    console.log(`${prefixToLog}:${spaces}${text}`);
   } else {
     console.log(text);
   }

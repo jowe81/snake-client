@@ -73,7 +73,7 @@ const handleUserInput = (data) => {
     // Enter message-typing mode
     case KEY_BINDINGS.TYPE_MESSAGE:
       _typingMessage = true;
-      cl("Start typing message","Stdin");
+      cl(`Type a message, then send with '${KEY_BINDINGS.TYPE_MESSAGE}' or send & store with any digit`, "Stdin");
     }
 
     // Send canned Message (digit)
@@ -89,10 +89,13 @@ const handleUserInput = (data) => {
       _message += data;
     } else {
       //Valid exit key pressed
+
+      //Digit? Then overwrite indicated message-slot with current message
       if (/\d/.test(data)) {
-        //Digit was given - overwrite indicated message-slot with current message
         KEY_BINDINGS.CANNED_MESSAGES[data] = _message;
+        cl(`Stored message in slot ${data}`,"Stdin");
       }
+
       //Send message and leave message-typing mode
       sendMessage(_message);
       _message = "";
