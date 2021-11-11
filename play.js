@@ -10,4 +10,4 @@ const { setupInput } = require('./input');
 const args = require('./args');
 
 // Start the game: connect to the server and start the UI
-setupInput(connect(args.name));
+setupInput(connect(args.name, args.ip, args.port));

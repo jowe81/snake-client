@@ -26,13 +26,13 @@ const checkForDeath = (data) => {
   }
 };
 
-// Initialize connection to game server
-const connect = function(name) {
-  cl(`Attempting to connect to ${CONNECT_TO.IP}:${CONNECT_TO.PORT}`);
+// Initialize connection (optional arguments will override values from constants.js)
+const connect = function(name, ip, port) {
+  cl(`Attempting to connect to ${ip || CONNECT_TO.IP}:${port || CONNECT_TO.PORT}`);
 
   const conn = net.createConnection({
-    host: CONNECT_TO.IP,  // IP address here,
-    port: CONNECT_TO.PORT,// PORT number here,
+    host: ip || CONNECT_TO.IP,  // IP address here,
+    port: port || CONNECT_TO.PORT,// PORT number here,
   });
 
   // Interpret incoming data as text
