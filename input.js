@@ -6,8 +6,13 @@ const { cl } = require('./log');
 // Get array with canned messages from "constants" module
 const { KEY_BINDINGS } = require('./constants');
 
+// Connection handle
 let _connection;
+
+// Indicates whether or not we're in message-typing mode
 let _typingMessage = false;
+
+// Stores a free-text message as it's being typed
 let _message = "";
 
 // Send a move command
@@ -39,9 +44,9 @@ const setupInput = (conn) => {
 // Handle keyboard event (user input)
 const handleUserInput = (data) => {
 
-  // Check for CTRL+C
+  // Check for CTRL + C
   if (data === '\u0003') {
-    cl("CTRL+C received - goodbye!", "Stdin");
+    cl("CTRL + C received. Goodbye!", "Stdin");
     process.exit();
   }
 
@@ -81,7 +86,7 @@ const handleUserInput = (data) => {
     //Currently typing a message - add to message until exiting with "0" key
 
     if (data !== KEY_BINDINGS.TYPE_MESSAGE) {
-      //Add to message
+      //Add this character to message
       _message += data;
     } else {
       //Exit key pressed - send message and leave message-typing mode
