@@ -1,7 +1,7 @@
 //Get logging function from "log" module
 const { cl } = require('./log');
 //Get array with canned messages from "constants" module
-const { _cannedMessages } = require('./constants');
+const { cannedMessages } = require('./constants');
 
 let _connection;
 let _typingMessage = false;
@@ -59,9 +59,9 @@ const handleUserInput = (data) => {
       cl("Start typing message","Keyboard");
     }
     //Check for digit other than 0, and send canned message
-    if (/[2-9]/.test(data)) {
-      cl(`Sending: ${data}`,"Keyboard");
-      sendMessage(data);
+    if (/[1-9]/.test(data)) {
+      cl(`Sending canned message: ${cannedMessages[data]}`,"Keyboard");
+      sendMessage(cannedMessages[data]);
     }
   } else {
     //Currently typing a message - add to message until exiting with "0" key
