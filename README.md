@@ -50,3 +50,6 @@ Terminate the client with `q` (default binding) or good old `CTRL + C`.
 
 ## Screenshot
 ![snake-client-screenshot.png](./snake-client-screenshot.png)
+
+## Dependencies
+* [chalk ^4.1.2](https://www.npmjs.com/package/chalk)
