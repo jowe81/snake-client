@@ -27,7 +27,7 @@ const checkForDeath = (data) => {
 };
 
 // Initialize connection to game server
-const connect = function (name) {
+const connect = function(name) {
   cl(`Attempting to connect to ${CONNECT_TO.IP}:${CONNECT_TO.PORT}`);
 
   const conn = net.createConnection({
