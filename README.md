@@ -10,8 +10,8 @@ _To take advantage of all the features of this client, you can use [my fork of t
 
 ### Messages
 * Send a canned message to other players by hitting any digit (`0` - `9`)
-* Hit `m` to compose a free-text message (characters won't show while you type)
-  * When done typing, hit `m` again to send and then discard the free-text message, _or_
+* Hit `~` to compose a free-text message
+  * When done typing, hit `~` again to send and then discard the free-text message, _or_
   * Hit any digit (`0` - `9`) to send and store the free-text message in the respective slot.
 
 ### Console Feedback
@@ -26,6 +26,8 @@ _To take advantage of all the features of this client, you can use [my fork of t
 ### Install it:
 ```bash
 git clone https://github.com/jowe81/snake-client
+cd snake-client
+npm install
 ```
 ### Configure it:
 * Visit the configuration file, ```constants.js```, to edit your name, connection information, key bindings, and canned messages.
@@ -33,6 +35,10 @@ git clone https://github.com/jowe81/snake-client
 
 ### Run it:
 ```bash
-cd snake-client
-node play [-name yourName] [-ip serverAddress] [-port portNumber]
+npm run play
 ```
+With optional command line arguments:
+```bash
+npm run play -- [-name yourName] [-ip serverAddress] [-port portNumber]
+```
+Terminate the client with `q` (default binding) or good old `CTRL + C`.

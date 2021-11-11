@@ -19,7 +19,7 @@ const KEY_BINDINGS = {
   },
 
   //Free-text messaging mode
-  TYPE_MESSAGE : 'm',
+  TYPE_MESSAGE : '~',
 
   //Canned messages map (keys must be digits)
   CANNED_MESSAGES : {

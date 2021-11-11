@@ -1,4 +1,4 @@
-// input.js: Handles user input from the keyboard
+// input.js: Handles user input from the keyboard, console feedback
 
 // Get logging function from "log" module
 const { cl } = require('./log');
@@ -26,7 +26,7 @@ const move = (direction) => {
 
 // Send a message
 const sendMessage = (message) => {
-  cl(`Sending message: ${message}`);
+  cl(`Sending message:`, "Client", message, "bgBlue", "white");
   _connection.write(`Say: ${message}`);
 };
 
@@ -74,21 +74,24 @@ const handleUserInput = (data) => {
     case KEY_BINDINGS.TYPE_MESSAGE:
       _typingMessage = true;
       cl(`Type a message, then send with '${KEY_BINDINGS.TYPE_MESSAGE}' or send & store with any digit`, "Stdin");
+      process.stdout.write('>'); //Show a prompt
     }
 
     // Send canned Message (digit)
     if (/\d/.test(data)) {
-      cl(`Selected canned message: ${KEY_BINDINGS.CANNED_MESSAGES[data]}`,"Stdin");
+      cl(`Selected canned message: ${data}`,"Stdin");
       sendMessage(KEY_BINDINGS.CANNED_MESSAGES[data]);
     }
 
   } else {
     //Currently typing a message (exit with TYPE_MESSAGE key or digit)
     if (data !== KEY_BINDINGS.TYPE_MESSAGE && !/\d/.test(data)) {
-      //Add this character to message
+      //Add this character to message and log it to console
       _message += data;
+      process.stdout.write(data);
     } else {
       //Valid exit key pressed
+      process.stdout.write('\n');
 
       //Digit? Then overwrite indicated message-slot with current message
       if (/\d/.test(data)) {
