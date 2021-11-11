@@ -1,7 +1,10 @@
 # Snake Client
 A client for the Lighthouse Labs [snek-multiplayer](https://github.com/lighthouse-labs/snek-multiplayer) Snake server.
 
-_To take advantage of all the features of this client, you can use [my fork of the LHL repo](https://github.com/jowe81/snek-multiplayer), which supports broadcast messages._
+_To take advantage of all the features of this client, you can use [my fork of the LHL Snake server repo](https://github.com/jowe81/snek-multiplayer), which supports broadcast messages._
+
+If you don't know Snake: it's a very popular video game classic. The player maneuvers a dot and grows it by ‘eating’ pieces of food. As it moves and eats, it grows and the growing snake becomes an obstacle to smooth maneuvers. The goal is to grow it to become as big as possible without bumping into the side walls, or bumping into itself, upon which it dies. This is a multiplayer take on the genre.
+
 ## Features:
 
 ### Navigation
@@ -29,6 +32,8 @@ git clone https://github.com/jowe81/snake-client
 cd snake-client
 npm install
 ```
+If you haven't already, install and start a Snake server (see [top of this file](#snake-client) for options).
+
 ### Configure it:
 * Visit the configuration file, ```constants.js```, to edit your name, connection information, key bindings, and canned messages.
 * Note that command line arguments take precedence over settings in ```constants.js```.
