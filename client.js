@@ -3,10 +3,15 @@ const net = require("net");
 // Get logging functions from log.js
 const { cl, setPrefix } = require("./log");
 //Set default prefix for logging to "Server"
-setPrefix("Server");
+setPrefix("Client");
+
+const sendName = (conn, name) => {
+  cl(`Sending name to server (${name})`);
+  conn.write(`Name: ${name}`);
+};
 
 const connect = function () {
-  cl("Connecting ...", "Client");
+  cl("Connecting ...");
 
   const conn = net.createConnection({
     host: 'localhost', // IP address here,
@@ -16,11 +21,13 @@ const connect = function () {
   // interpret incoming data as text
   conn.setEncoding("utf8");
 
-  conn.on('connection', (data) => {
-    cl(data);
+  conn.on('connect', (data) => {
+    cl("Connection established");
+    sendName(conn,'JW');
   });
+
   conn.on('data', (data) => {
-    cl(data);
+    cl(data, "Server");
   });
   return conn;
 };
