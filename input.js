@@ -1,7 +1,7 @@
 //Get logging function from "log" module
 const { cl } = require('./log');
 //Get array with canned messages from "constants" module
-const { CANNED_MESSAGES, NAV_KEYS, MESSAGE_KEY } = require('./constants');
+const { KEY_BINDINGS } = require('./constants');
 
 let _connection;
 let _typingMessage = false;
@@ -11,7 +11,7 @@ let _message = "";
 const move = (direction) => {
   if (['up', 'down', 'left', 'right'].includes(direction)) {
     //This is a valid direction - send the command
-    cl(`Sending the Move: ${direction} command`);
+    cl(`Sending move ${direction} command`);
     _connection.write(`Move: ${direction}`);
   }
 };
@@ -41,27 +41,27 @@ const handleUserInput = (data) => {
   if (!_typingMessage) {
     //Not in message mode, check for move command keys
     switch (data) {
-    case NAV_KEYS.UP:
+    case KEY_BINDINGS.NAVIGATION.UP:
       move('up');
       break;
-    case NAV_KEYS.LEFT:
+    case KEY_BINDINGS.NAVIGATION.LEFT:
       move('left');
       break;
-    case NAV_KEYS.DOWN:
+    case KEY_BINDINGS.NAVIGATION.DOWN:
       move('down');
       break;
-    case NAV_KEYS.RIGHT:
+    case KEY_BINDINGS.NAVIGATION.RIGHT:
       move('right');
       break;
-    case MESSAGE_KEY:
+    case KEY_BINDINGS.TYPE_MESSAGE:
       //Enter message mode
       _typingMessage = true;
       cl("Start typing message","Stdin");
     }
     //Check for digit other than 0, and send canned message
     if (/[1-9]/.test(data)) {
-      cl(`Selected canned message: ${CANNED_MESSAGES[data]}`,"Stdin");
-      sendMessage(CANNED_MESSAGES[data]);
+      cl(`Selected canned message: ${KEY_BINDINGS.CANNED_MESSAGES[data]}`,"Stdin");
+      sendMessage(KEY_BINDINGS.CANNED_MESSAGES[data]);
     }
   } else {
     //Currently typing a message - add to message until exiting with "0" key

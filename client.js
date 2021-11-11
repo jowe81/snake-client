@@ -1,15 +1,17 @@
-// establishes a connection with the game server
+// client.js: Manages the connection with the game server
+
+//Get configuration
+const { CONNECT_TO, PLAYER_INITIALS } = require("./constants");
+// Get TCP tools
 const net = require("net");
 // Get logging functions from log.js
 const { cl, setPrefix } = require("./log");
-//Set default prefix for logging to "Server"
+//Set default prefix for logging
 setPrefix("Client");
-//Get configuration
-const { IP, PORT } = require("./constants");
 
 //Set our name on the server
 const sendName = (conn, name) => {
-  cl(`Sending name to server (${name})`);
+  cl(`Sending name/player initials to server: ${name}`);
   conn.write(`Name: ${name}`);
 };
 
@@ -17,8 +19,8 @@ const connect = function () {
   cl("Connecting ...");
 
   const conn = net.createConnection({
-    host: IP, // IP address here,
-    port: PORT,// PORT number here,
+    host: CONNECT_TO.IP,  // IP address here,
+    port: CONNECT_TO.PORT,// PORT number here,
   });
 
   // interpret incoming data as text
@@ -26,7 +28,7 @@ const connect = function () {
 
   conn.on('connect', (data) => {
     cl("Connection established");
-    sendName(conn,'JW');
+    sendName(conn, PLAYER_INITIALS);
   });
 
   conn.on('data', (data) => {
