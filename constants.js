@@ -19,7 +19,10 @@ const KEY_BINDINGS = {
   },
 
   //Free-text messaging mode
-  TYPE_MESSAGE : '~',
+  TYPE_MESSAGE: '~',
+
+  //EXIT
+  EXIT: 'q',
 
   //Canned messages map (keys must be digits)
   CANNED_MESSAGES : {

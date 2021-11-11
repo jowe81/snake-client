@@ -44,9 +44,10 @@ const setupInput = (conn) => {
 // Handle keyboard event (user input)
 const handleUserInput = (data) => {
 
-  // Check for CTRL + C
-  if (data === '\u0003') {
-    cl("CTRL + C received. Goodbye!", "Stdin");
+  // Check for termination request
+  if (data === '\u0003' || data === KEY_BINDINGS.EXIT) {
+    cl("Goodbye!");
+    _connection.destroy();
     process.exit();
   }
 
