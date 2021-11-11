@@ -11,8 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/jowe81/snake-client.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["snake", "multiplayer", "Lighthouse Labs"],
+  "author": "Johannes Weber",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jowe81/snake-client/issues"
